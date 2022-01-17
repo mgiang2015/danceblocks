@@ -17,15 +17,15 @@ export const circlesSlice = createSlice({
             // circles/addCircle: Adds a circle with parameters specified in action.payload.
             // If action dispatched is of type 'circles/addCircle', this reducer will be carried out
             // Use update to create a new copy of state.value quickly
-            payload = action.payload
+            const payload = action.payload
             
-            id = payload.id
-            top = payload.top
-            left = payload.left
-            backgroundColor = payload.backgroundColor
-            title = payload.title
+            const id = payload.id
+            const top = payload.top
+            const left = payload.left
+            const backgroundColor = payload.backgroundColor
+            const title = payload.title
             
-            newCircle = {
+            const newCircle = {
                 id: {
                     top, left, backgroundColor, title
                 }
@@ -36,11 +36,11 @@ export const circlesSlice = createSlice({
         moveCircle: (state, action) => {
             // circles/moveCircle: Modifies the coordinates (top, left) with the ones specified in action.payload, along with id
             // If action dispatched is of type 'circles/moveCircle', this reducer will be carried out
-            payload = action.payload
+            const payload = action.payload
 
-            id = payload.id
-            top = payload.top
-            left = payload.left
+            const id = payload.id
+            const top = payload.top
+            const left = payload.left
 
             state.circles = update(state.circles, {
                 id: {
@@ -50,3 +50,18 @@ export const circlesSlice = createSlice({
         },
     }
 })
+
+export const selectCircles = state => state.circles
+
+export const moveCircle = (id, left, top) => {
+    const action = {
+        type: 'circles/moveCircle',
+        payload: {
+            id: id,
+            left: left,
+            top: top,
+        }
+    }
+
+    return action
+}
