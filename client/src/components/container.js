@@ -1,10 +1,10 @@
 import { useDrop } from 'react-dnd'
 import { useState, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import update from 'immutability-helper';
 import ItemTypes from '../itemTypes';
 import Circle from './circle'
-
-
+import { selectCircles, moveCircle } from '../slices/circlesSlice';
 
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -32,20 +32,13 @@ const Container = ({ hideSourceOnDrag }) => {
         position: 'relative',
     };
 
-    // map circle id to circle properties
-    const [circles, setCircles] = useState({
-        a: { top: 20, left: 80, backgroundColor: '#2ecc71', title: 'Drag me around' },
-        b: { top: 180, left: 20, backgroundColor: '#ba4a00', title: 'Drag me too' },
-        c: { top: 300, left: 300, backgroundColor: '#9b59b6', title: 'Lululul' },
-    })
+    // get circles from store
+    const circles = useSelector(selectCircles)
+    const dispatch = useDispatch()
 
     // define callback invoked when a circle is moved
     const moveCircle = useCallback((id, left, top) => {
-        setCircles(update(circles, {
-            [id]: {
-                $merge: {left, top}
-            }
-        }))
+        dispatch(moveCircle(id, left, top))
     })
 
     // hook to call when an object is dropped. Any component with this ref will be wired as a drop target
