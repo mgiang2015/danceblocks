@@ -1,0 +1,52 @@
+import { createSlice } from '@reduxjs/toolkit'
+import update from 'immutability-helper';
+
+const initialCircles = {
+    a: { top: 20, left: 80, backgroundColor: '#2ecc71', title: 'Drag me around' },
+    b: { top: 180, left: 20, backgroundColor: '#ba4a00', title: 'Drag me too' },
+    c: { top: 300, left: 300, backgroundColor: '#9b59b6', title: 'Lululul' },
+}
+
+export const circlesSlice = createSlice({
+    name: 'circles',
+    initialState: {
+        circles: initialCircles
+    },
+    reducers: {
+        addCircle: (state, action) => {
+            // circles/addCircle: Adds a circle with parameters specified in action.payload.
+            // If action dispatched is of type 'circles/addCircle', this reducer will be carried out
+            // Use update to create a new copy of state.value quickly
+            payload = action.payload
+            
+            id = payload.id
+            top = payload.top
+            left = payload.left
+            backgroundColor = payload.backgroundColor
+            title = payload.title
+            
+            newCircle = {
+                id: {
+                    top, left, backgroundColor, title
+                }
+            }
+
+            state.circles = update(state.circles, { $merge: newCircle })
+        },
+        moveCircle: (state, action) => {
+            // circles/moveCircle: Modifies the coordinates (top, left) with the ones specified in action.payload, along with id
+            // If action dispatched is of type 'circles/moveCircle', this reducer will be carried out
+            payload = action.payload
+
+            id = payload.id
+            top = payload.top
+            left = payload.left
+
+            state.circles = update(state.circles, {
+                id: {
+                    $merge: {left, top}
+                }
+            })
+        },
+    }
+})
