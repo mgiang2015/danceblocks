@@ -2,7 +2,7 @@ import { useDrag } from 'react-dnd'
 import ItemTypes from '../itemTypes';
 
 
-const Circle = ({ id, left, top, backgroundColor, title, hideSourceOnDrag, children, }) => {
+const Circle = ({ id, left, top, backgroundColor, title, hideSourceOnDrag, }) => {
     // wire component as a drag source!
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.CIRCLE,
@@ -27,7 +27,9 @@ const Circle = ({ id, left, top, backgroundColor, title, hideSourceOnDrag, child
     }
 
     return (
-        <div ref={drag} style={{ ...style, left, top }} />
+        <div ref={drag} style={{ ...style, left, top }} >
+            {title}
+        </div>
     );
 };
 
