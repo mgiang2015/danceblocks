@@ -31,7 +31,7 @@ export const circlesSlice = createSlice({
                 }
             }
 
-            state.circles = update(state.circles, { $merge: newCircle })
+            state.value = update(state.value, { $merge: newCircle })
         },
         moveCircle: (state, action) => {
             // circles/moveCircle: Modifies the coordinates (top, left) with the ones specified in action.payload, along with id
@@ -42,9 +42,9 @@ export const circlesSlice = createSlice({
             const top = payload.top
             const left = payload.left
 
-            state.circles = update(state.circles, {
-                id: {
-                    $merge: {left, top}
+            state.value = update(state.value, {
+                [id]: {
+                    $merge: { top, left }
                 }
             })
         },
