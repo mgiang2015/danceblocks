@@ -34,12 +34,11 @@ const Container = ({ hideSourceOnDrag }) => {
     // get circles from store
     const state = useSelector(selectCircles)
     const circles = state.value
-    console.log(circles)
     const dispatch = useDispatch()
 
     // define callback invoked when a circle is moved
     const updateCircle = useCallback((id, left, top) => {
-        dispatch(moveCircle(id, left, top))
+        dispatch(moveCircle({ id, left, top }))
     })
 
     // hook to call when an object is dropped. Any component with this ref will be wired as a drop target
@@ -49,7 +48,7 @@ const Container = ({ hideSourceOnDrag }) => {
             const delta = monitor.getDifferenceFromInitialOffset();
             const left = Math.round(item.left + delta.x);
             const top = Math.round(item.top + delta.y);
-            dispatch(moveCircle(item.id, left, top));
+            updateCircle(item.id, left, top)
             return undefined;
         },
     }), [updateCircle]);
@@ -58,7 +57,6 @@ const Container = ({ hideSourceOnDrag }) => {
     <div ref={drop} style={style}>
         { /* Map each key-value in circles map to a Circle */}
         {Object.keys(circles).map((key) => {
-            console.log(key)
             const { top, left, backgroundColor, title } = circles[key];
             return (
                 <Circle key={key} id={key} title={title} left={left} top={top} backgroundColor={backgroundColor} hideSourceOnDrag={hideSourceOnDrag} />
