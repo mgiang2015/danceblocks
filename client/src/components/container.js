@@ -1,7 +1,6 @@
 import { useDrop } from 'react-dnd'
 import { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import update from 'immutability-helper';
 import ItemTypes from '../itemTypes';
 import Circle from './circle'
 import { selectCircles, moveCircle } from '../slices/circlesSlice';
@@ -33,11 +32,13 @@ const Container = ({ hideSourceOnDrag }) => {
     };
 
     // get circles from store
-    const circles = useSelector(selectCircles)
+    const state = useSelector(selectCircles)
+    const circles = state.value
+    console.log(circles)
     const dispatch = useDispatch()
 
     // define callback invoked when a circle is moved
-    const moveCircle = useCallback((id, left, top) => {
+    const updateCircle = useCallback((id, left, top) => {
         dispatch(moveCircle(id, left, top))
     })
 
@@ -48,16 +49,17 @@ const Container = ({ hideSourceOnDrag }) => {
             const delta = monitor.getDifferenceFromInitialOffset();
             const left = Math.round(item.left + delta.x);
             const top = Math.round(item.top + delta.y);
-            moveCircle(item.id, left, top);
+            dispatch(moveCircle(item.id, left, top));
             return undefined;
         },
-    }), [moveCircle]);
+    }), [updateCircle]);
 
     return (
     <div ref={drop} style={style}>
         { /* Map each key-value in circles map to a Circle */}
         {Object.keys(circles).map((key) => {
-            const { left, top, backgroundColor, title } = circles[key];
+            console.log(key)
+            const { top, left, backgroundColor, title } = circles[key];
             return (
                 <Circle key={key} id={key} title={title} left={left} top={top} backgroundColor={backgroundColor} hideSourceOnDrag={hideSourceOnDrag} />
             );})}

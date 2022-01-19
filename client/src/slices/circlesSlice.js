@@ -10,7 +10,7 @@ const initialCircles = {
 export const circlesSlice = createSlice({
     name: 'circles',
     initialState: {
-        circles: initialCircles
+        value: initialCircles
     },
     reducers: {
         addCircle: (state, action) => {
@@ -53,15 +53,6 @@ export const circlesSlice = createSlice({
 
 export const selectCircles = state => state.circles
 
-export const moveCircle = (id, left, top) => {
-    const action = {
-        type: 'circles/moveCircle',
-        payload: {
-            id: id,
-            left: left,
-            top: top,
-        }
-    }
+export const { addCircle, moveCircle } = circlesSlice.actions
 
-    return action
-}
+export default circlesSlice.reducer
