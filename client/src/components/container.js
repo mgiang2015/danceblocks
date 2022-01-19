@@ -4,9 +4,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import ItemTypes from '../itemTypes';
 import Circle from './circle'
 import { selectCircles, moveCircle } from '../slices/circlesSlice';
+import Sidebar from './sidebar'
+import styles from './container.module.css'
 
 function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
+    var { innerWidth: width, innerHeight: height } = window;
+    width = width * 0.8
     return {
       width,
       height
@@ -28,7 +31,7 @@ const Container = ({ hideSourceOnDrag }) => {
     const style = {
         width: windowDimensions.width,
         height: windowDimensions.height,
-        position: 'relative',
+        border: '1px solid black'
     };
 
     // get circles from store
@@ -54,13 +57,16 @@ const Container = ({ hideSourceOnDrag }) => {
     }), [updateCircle]);
 
     return (
-    <div ref={drop} style={style}>
-        { /* Map each key-value in circles map to a Circle */}
-        {Object.keys(circles).map((key) => {
-            const { top, left, backgroundColor, title } = circles[key];
-            return (
-                <Circle key={key} id={key} title={title} left={left} top={top} backgroundColor={backgroundColor} hideSourceOnDrag={hideSourceOnDrag} />
-            );})}
+    <div className={styles.wrapper}>
+        <div ref={drop} style={style}>
+            { /* Map each key-value in circles map to a Circle */}
+            {Object.keys(circles).map((key) => {
+                const { top, left, backgroundColor, title } = circles[key];
+                return (
+                    <Circle key={key} id={key} title={title} left={left} top={top} backgroundColor={backgroundColor} hideSourceOnDrag={hideSourceOnDrag} />
+                );})}
+        </div>
+        <Sidebar />
     </div>
     );
 };
