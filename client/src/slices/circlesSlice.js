@@ -48,11 +48,26 @@ export const circlesSlice = createSlice({
                 }
             })
         },
+        changeCircle: (state, action) => {
+            // circles/changeCircle: Modifes the properties (title and backgroundColor) of circle with
+            // id specified in action.payload
+            const payload = action.payload
+
+            const id = payload.id
+            const title = payload.title
+            const backgroundColor = payload.backgroundColor
+
+            state.value = update(state.value, {
+                [id]: {
+                    $merge: { title, backgroundColor }
+                }
+            })
+        }
     }
 })
 
 export const selectCircles = state => state.circles
 
-export const { addCircle, moveCircle } = circlesSlice.actions
+export const { addCircle, moveCircle, changeCircle } = circlesSlice.actions
 
 export default circlesSlice.reducer
