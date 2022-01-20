@@ -2,15 +2,16 @@ import { createSlice } from '@reduxjs/toolkit'
 import update from 'immutability-helper';
 
 const initialCircles = {
-    a: { top: 20, left: 80, backgroundColor: '#2ecc71', title: 'Drag me around' },
-    b: { top: 180, left: 20, backgroundColor: '#ba4a00', title: 'Drag me too' },
-    c: { top: 300, left: 300, backgroundColor: '#9b59b6', title: 'Lululul' },
+    1: { top: 20, left: 80, backgroundColor: '#2ecc71', title: 'Drag me around' },
+    2: { top: 180, left: 20, backgroundColor: '#ba4a00', title: 'Drag me too' },
+    3: { top: 300, left: 300, backgroundColor: '#9b59b6', title: 'Lululul' },
 }
 
 export const circlesSlice = createSlice({
     name: 'circles',
     initialState: {
-        value: initialCircles
+        value: initialCircles,
+        counter: 4
     },
     reducers: {
         addCircle: (state, action) => {
@@ -19,7 +20,7 @@ export const circlesSlice = createSlice({
             // Use update to create a new copy of state.value quickly
             const payload = action.payload
             
-            const id = payload.id
+            const id = state.counter
             const top = payload.top
             const left = payload.left
             const backgroundColor = payload.backgroundColor
@@ -31,7 +32,8 @@ export const circlesSlice = createSlice({
                 }
             }
 
-            state.value = update(state.value, { $set: newCircle })
+            state.value = update(state.value, { $merge: newCircle })
+            state.counter += 1
         },
         moveCircle: (state, action) => {
             // circles/moveCircle: Modifies the coordinates (top, left) with the ones specified in action.payload, along with id
