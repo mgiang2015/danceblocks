@@ -16,6 +16,21 @@ function getWindowDimensions() {
     };
 }
 
+const Marking = ({ top, left }) => {
+    const style = {
+        position: 'absolute',
+        top: top,
+        left: left,
+        backgroundColor: 'red',
+        width: '0.5em',
+        height: '2em',
+    }
+
+    return (
+        <div style={style} />
+    )
+}
+
 const Container = ({ hideSourceOnDrag }) => {
     // Get windows size to set style
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
@@ -58,6 +73,9 @@ const Container = ({ hideSourceOnDrag }) => {
 
     return (
     <div className={styles.wrapper}>
+        <Marking top={0} left={windowDimensions.width * 0.5} />
+        <Marking top={windowDimensions.height * 0.5} left={windowDimensions.width * 0.5} />
+        <Marking top={windowDimensions.height} left={windowDimensions.width * 0.5} />
         <div ref={drop} style={style}>
             { /* Map each key-value in circles map to a Circle */}
             {Object.keys(circles).map((key) => {
