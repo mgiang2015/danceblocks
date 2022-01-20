@@ -74,6 +74,8 @@ const Container = ({ hideSourceOnDrag }) => {
     return (
     <div className={styles.wrapper}>
         <Marking top={0} left={windowDimensions.width * 0.5} />
+        <Marking top={0} left={windowDimensions.width * 0.25} />
+        <Marking top={0} left={windowDimensions.width * 0.75} />
         <Marking top={windowDimensions.height * 0.5} left={windowDimensions.width * 0.5} />
         <Marking top={windowDimensions.height} left={windowDimensions.width * 0.5} />
         <div ref={drop} style={style}>
