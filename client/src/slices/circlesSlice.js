@@ -26,12 +26,12 @@ export const circlesSlice = createSlice({
             const title = payload.title
             
             const newCircle = {
-                id: {
+                [id]: {
                     top, left, backgroundColor, title
                 }
             }
 
-            state.value = update(state.value, { $merge: newCircle })
+            state.value = update(state.value, { $set: newCircle })
         },
         moveCircle: (state, action) => {
             // circles/moveCircle: Modifies the coordinates (top, left) with the ones specified in action.payload, along with id
@@ -62,6 +62,14 @@ export const circlesSlice = createSlice({
                     $merge: { title, backgroundColor }
                 }
             })
+        },
+        deleteCircle: (state, action) => {
+            // action specifies the id of the circle deleted
+            const payload = action.payload
+
+            const id = payload.id
+
+            state.value = update(state.value, { $unset: [id] })
         }
     }
 })
