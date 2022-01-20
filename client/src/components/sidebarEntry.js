@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { changeCircle } from "../slices/circlesSlice"
+import { changeCircle, deleteCircle } from "../slices/circlesSlice"
 import { useDispatch } from 'react-redux'
 
 const SidebarEntry = ({ id, title, backgroundColor }) => {
@@ -26,6 +26,11 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
         toggleEditable()
     }
 
+    const handleDelete = () => {
+        // dispatch a delete action
+        dispatch(deleteCircle({ id }))
+    }
+
     if (editable) {
         return (
             <div>
@@ -42,6 +47,7 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
             <span>{title}</span>
             <span>{backgroundColor}</span>
             <button onClick={toggleEditable}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
         </div>
     )
 }

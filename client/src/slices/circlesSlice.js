@@ -76,6 +76,6 @@ export const circlesSlice = createSlice({
 
 export const selectCircles = state => state.circles
 
-export const { addCircle, moveCircle, changeCircle } = circlesSlice.actions
+export const { addCircle, moveCircle, changeCircle, deleteCircle } = circlesSlice.actions
 
 export default circlesSlice.reducer
