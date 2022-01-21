@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { changeCircle, deleteCircle } from "../slices/circlesSlice"
 import { useDispatch } from 'react-redux'
+import Button from '@mui/material/Button';
 
 const SidebarEntry = ({ id, title, backgroundColor }) => {
     const [editable, setEditable] = useState(false)
@@ -36,7 +37,7 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
             <div>
                 <input placeholder="New label" onChange={(event) => setCurrTitle(event.target.value)}/>
                 <input placeholder="New Color" onChange={(event) => setCurrColor(event.target.value)}/>
-                <button onClick={submitChanges}>Done</button>
+                <Button onClick={submitChanges}>Done</Button>
             </div>
         )
     }
@@ -46,8 +47,8 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
             <span>{id}</span>
             <span>{title}</span>
             <span>{backgroundColor}</span>
-            <button onClick={toggleEditable}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+            <Button onClick={toggleEditable}>Edit</Button>
+            <Button color="error" onClick={handleDelete}>Delete</Button>
         </div>
     )
 }

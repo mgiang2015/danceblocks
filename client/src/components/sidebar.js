@@ -8,7 +8,6 @@ import SidebarEntry from './sidebarEntry';
 const Sidebar = () => {
     const state = useSelector(selectCircles)
     const circles = state.value
-    const dispatch = useDispatch()
 
     return (
         <div>
