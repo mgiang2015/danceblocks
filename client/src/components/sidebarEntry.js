@@ -2,6 +2,8 @@ import { useState } from "react"
 import { changeCircle, deleteCircle } from "../slices/circlesSlice"
 import { useDispatch } from 'react-redux'
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography'
+import styles from './container.module.css'
 
 const SidebarEntry = ({ id, title, backgroundColor }) => {
     const [editable, setEditable] = useState(false)
@@ -44,9 +46,8 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
 
     return (
         <div>
-            <span>{id}</span>
-            <span>{title}</span>
-            <span>{backgroundColor}</span>
+            <Typography className={styles.entryText}>{title}</Typography>
+            <Typography className={styles.entryText}>{backgroundColor}</Typography>
             <Button onClick={toggleEditable}>Edit</Button>
             <Button color="error" onClick={handleDelete}>Delete</Button>
         </div>

@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectCircles } from '../slices/circlesSlice';
 import CircleAdder from './circleAdder';
 import SidebarEntry from './sidebarEntry';
+import styles from './container.module.css'
 
 // Sidebar is in charge of displaying information (title and color) of existing circles,
 // and allow users to change those
@@ -10,7 +11,7 @@ const Sidebar = () => {
     const circles = state.value
 
     return (
-        <div>
+        <div className={styles.sidebar}>
             <CircleAdder />
             {Object.keys(circles).map((key) => {
                 const { top, left, backgroundColor, title } = circles[key];
