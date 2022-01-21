@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addCircle } from "../slices/circlesSlice"
+import Button from '@mui/material/Button';
 
 const CircleAdder = () => {
     const [adding, setAdding] = useState(false)
@@ -30,14 +31,14 @@ const CircleAdder = () => {
     }
 
     if (!adding) {
-        return <button onClick={toggleAdd}>Add a circle</button>
+        return <Button onClick={toggleAdd}>Add a circle</Button>
     }
 
     return (
         <div>
             <input placeholder="Label" onChange={(event) => setCurrTitle(event.target.value)}/>
             <input placeholder="Color" onChange={(event) => setCurrColor(event.target.value)}/>
-            <button onClick={handleSubmit}>Submit</button>
+            <Button onClick={handleSubmit}>Submit</Button>
         </div>
     )
 }
