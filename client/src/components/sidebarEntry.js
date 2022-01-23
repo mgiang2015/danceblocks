@@ -41,6 +41,7 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
             <div>
                 <div className={styles.entryFields}>
                     <TextField size={entrySize} label="Updated Label" placeholder="Dancer Name" onChange={(event) => setCurrTitle(event.target.value)}/>
+                    <Typography className={styles.entryText}>Color</Typography>
                     <HexColorPicker color={currColor} onChange={setCurrColor}/>
                 </div>
                 <Button onClick={submitChanges}>Done</Button>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addCircle } from "../slices/circlesSlice"
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 import { HexColorPicker } from 'react-colorful';
 import styles from './container.module.css'
 
@@ -42,6 +42,7 @@ const CircleAdder = () => {
         <div>
             <div className={styles.entryFields}>
                 <TextField size={entrySize} label="Label" placeholder="Dancer Name" onChange={(event) => setCurrTitle(event.target.value)}/>
+                <Typography className={styles.entryText}>Color</Typography>
                 <HexColorPicker color={currColor} onChange={setCurrColor}/>
             </div>
             <Button onClick={handleSubmit}>Submit</Button>
