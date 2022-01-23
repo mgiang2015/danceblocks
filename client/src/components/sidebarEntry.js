@@ -7,15 +7,15 @@ import styles from './container.module.css'
 
 const SidebarEntry = ({ id, title, backgroundColor }) => {
     const [editable, setEditable] = useState(false)
-    const [currTitle, setCurrTitle] = useState("")
-    const [currColor, setCurrColor] = useState("")
+    const [currTitle, setCurrTitle] = useState(title)
+    const [currColor, setCurrColor] = useState(backgroundColor)
     const dispatch = useDispatch()
 
     const entrySize = "small"
 
     const toggleEditable = () => {
-        setCurrColor("")
-        setCurrTitle("")
+        setCurrColor(backgroundColor)
+        setCurrTitle(title)
         setEditable(!editable)
     }
 
@@ -36,6 +36,12 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
         dispatch(deleteCircle({ id }))
     }
 
+    const colorDisplayStyle = {
+        width: '1em',
+        height: '1em',
+        backgroundColor: currColor
+    }
+
     if (editable) {
         return (
             <div>
@@ -51,8 +57,10 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
 
     return (
         <div>
-            <Typography className={styles.entryText}>{title}</Typography>
-            <Typography className={styles.entryText}>{backgroundColor}</Typography>
+            <div className={styles.sidebarEntryInfo}>
+                <Typography className={styles.entryText}>{title}</Typography>
+                <div style={colorDisplayStyle}></div>
+            </div>
             <Button onClick={toggleEditable}>Edit</Button>
             <Button color="error" onClick={handleDelete}>Delete</Button>
         </div>
