@@ -6,22 +6,21 @@ import { HexColorPicker } from 'react-colorful';
 import styles from './container.module.css'
 
 const CircleAdder = () => {
-    const [adding, setAdding] = useState(false)
-    const [currTitle, setCurrTitle] = useState("")
-    const [currColor, setCurrColor] = useState("")
-    const dispatch = useDispatch()
-
     const defaultTitle = "New Dancer"
     const defaultColor = "#7d3c98"
     const defaultTop = 20
     const defaultLeft = 20
 
+    const [adding, setAdding] = useState(false)
+    const [currTitle, setCurrTitle] = useState(defaultTitle)
+    const [currColor, setCurrColor] = useState(defaultColor)
+    const dispatch = useDispatch()
     const entrySize = "small"
 
     const toggleAdd = () => {
         setAdding(!adding)
-        setCurrTitle("")
-        setCurrColor("")
+        setCurrTitle(defaultTitle)
+        setCurrColor(defaultColor)
     }
 
     const handleSubmit = () => {
