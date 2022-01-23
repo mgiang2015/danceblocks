@@ -2,6 +2,7 @@ import { useState } from "react"
 import { changeCircle, deleteCircle } from "../slices/circlesSlice"
 import { useDispatch } from 'react-redux'
 import { Button, Typography, TextField } from '@mui/material';
+import { HexColorPicker } from 'react-colorful';
 import styles from './container.module.css'
 
 const SidebarEntry = ({ id, title, backgroundColor }) => {
@@ -40,7 +41,7 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
             <div>
                 <div className={styles.entryFields}>
                     <TextField size={entrySize} label="Updated Label" placeholder="Dancer Name" onChange={(event) => setCurrTitle(event.target.value)}/>
-                    <TextField size={entrySize} label="Updated Color" onChange={(event) => setCurrColor(event.target.value)}/>
+                    <HexColorPicker color={currColor} onChange={setCurrColor}/>
                 </div>
                 <Button onClick={submitChanges}>Done</Button>
             </div>
