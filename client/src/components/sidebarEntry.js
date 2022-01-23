@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { changeCircle, deleteCircle } from "../slices/circlesSlice"
 import { useDispatch } from 'react-redux'
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography'
+import { Button, Typography, TextField } from '@mui/material';
 import styles from './container.module.css'
 
 const SidebarEntry = ({ id, title, backgroundColor }) => {
@@ -10,6 +9,8 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
     const [currTitle, setCurrTitle] = useState("")
     const [currColor, setCurrColor] = useState("")
     const dispatch = useDispatch()
+
+    const entrySize = "small"
 
     const toggleEditable = () => {
         setCurrColor("")
@@ -37,8 +38,10 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
     if (editable) {
         return (
             <div>
-                <input placeholder="New label" onChange={(event) => setCurrTitle(event.target.value)}/>
-                <input placeholder="New Color" onChange={(event) => setCurrColor(event.target.value)}/>
+                <div className={styles.entryFields}>
+                    <TextField size={entrySize} label="Updated Label" placeholder="Dancer Name" onChange={(event) => setCurrTitle(event.target.value)}/>
+                    <TextField size={entrySize} label="Updated Color" onChange={(event) => setCurrColor(event.target.value)}/>
+                </div>
                 <Button onClick={submitChanges}>Done</Button>
             </div>
         )

@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addCircle } from "../slices/circlesSlice"
-import Button from '@mui/material/Button';
+import { Button, TextField } from '@mui/material';
+import styles from './container.module.css'
 
 const CircleAdder = () => {
     const [adding, setAdding] = useState(false)
@@ -13,6 +14,8 @@ const CircleAdder = () => {
     const defaultColor = "#7d3c98"
     const defaultTop = 20
     const defaultLeft = 20
+
+    const entrySize = "small"
 
     const toggleAdd = () => {
         setAdding(!adding)
@@ -36,8 +39,10 @@ const CircleAdder = () => {
 
     return (
         <div>
-            <input placeholder="Label" onChange={(event) => setCurrTitle(event.target.value)}/>
-            <input placeholder="Color" onChange={(event) => setCurrColor(event.target.value)}/>
+            <div className={styles.entryFields}>
+                <TextField size={entrySize} label="Label" placeholder="Dancer Name" onChange={(event) => setCurrTitle(event.target.value)}/>
+                <TextField size={entrySize} label="Color" onChange={(event) => setCurrColor(event.target.value)}/>
+            </div>
             <Button onClick={handleSubmit}>Submit</Button>
         </div>
     )
