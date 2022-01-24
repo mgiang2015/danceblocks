@@ -8,6 +8,10 @@
     border: 1em solid #2C3E50;
 }
 
+.footer {
+    margin: 1em;
+}
+
 .sidebar {
     display: flex;
     flex-direction: column;

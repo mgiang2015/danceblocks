@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import ItemTypes from '../itemTypes';
 import Circle from './circle'
+import Footer from './footer'
 import { selectCircles, moveCircle } from '../slices/circlesSlice';
 import Sidebar from './sidebar'
 import styles from './container.module.css'
@@ -76,6 +77,7 @@ const Container = ({ hideSourceOnDrag }) => {
     }), [updateCircle]);
 
     return (
+    <>
     <div className={styles.wrapper}>
         <Marking top={0} left={windowDimensions.width * 0.5}>C</Marking>
         <Marking top={0} left={windowDimensions.width * 0.25}>Q</Marking>
@@ -91,6 +93,8 @@ const Container = ({ hideSourceOnDrag }) => {
         </div>
         <Sidebar />
     </div>
+    <Footer />
+    </>
     );
 };
 
