@@ -12,6 +12,10 @@
     margin: 1em;
 }
 
+.footer * {
+    margin-left: 1em;
+}
+
 .sidebar {
     display: flex;
     flex-direction: column;
