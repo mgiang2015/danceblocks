@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 import update from 'immutability-helper';
 
 const initialCircles = {
-    1: { top: 20, left: 80, backgroundColor: '#2ecc71', title: 'Drag me around' },
-    2: { top: 180, left: 20, backgroundColor: '#ba4a00', title: 'Drag me too' },
-    3: { top: 300, left: 300, backgroundColor: '#9b59b6', title: 'Lululul' },
+    1: { top: 20, left: 80, backgroundColor: '#2ecc71', title: 'Le' },
+    2: { top: 180, left: 20, backgroundColor: '#ba4a00', title: 'Zel' },
+    3: { top: 300, left: 300, backgroundColor: '#9b59b6', title: 'Sofea' },
 }
 
 export const circlesSlice = createSlice({
