@@ -1,8 +1,9 @@
 import { useDrop } from 'react-dnd'
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import ItemTypes from '../itemTypes';
 import Circle from './circle'
+import Footer from './footer'
 import { selectCircles, moveCircle } from '../slices/circlesSlice';
 import Sidebar from './sidebar'
 import styles from './container.module.css'
@@ -59,9 +60,9 @@ const Container = ({ hideSourceOnDrag }) => {
     const dispatch = useDispatch()
 
     // define callback invoked when a circle is moved
-    const updateCircle = useCallback((id, left, top) => {
+    const updateCircle = (id, left, top) => {
         dispatch(moveCircle({ id, left, top }))
-    })
+    }
 
     // hook to call when an object is dropped. Any component with this ref will be wired as a drop target
     const [, drop] = useDrop(() => ({
@@ -76,6 +77,7 @@ const Container = ({ hideSourceOnDrag }) => {
     }), [updateCircle]);
 
     return (
+    <>
     <div className={styles.wrapper}>
         <Marking top={0} left={windowDimensions.width * 0.5}>C</Marking>
         <Marking top={0} left={windowDimensions.width * 0.25}>Q</Marking>
@@ -91,6 +93,8 @@ const Container = ({ hideSourceOnDrag }) => {
         </div>
         <Sidebar />
     </div>
+    <Footer />
+    </>
     );
 };
 
