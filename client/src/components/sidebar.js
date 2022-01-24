@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectCircles } from '../slices/circlesSlice';
 import CircleAdder from './circleAdder';
 import SidebarEntry from './sidebarEntry';
@@ -14,7 +14,7 @@ const Sidebar = () => {
         <div className={styles.sidebar}>
             <CircleAdder />
             {Object.keys(circles).map((key) => {
-                const { top, left, backgroundColor, title } = circles[key];
+                const { backgroundColor, title } = circles[key];
                 return (
                     <SidebarEntry key={key} id={key} backgroundColor={backgroundColor} title={title} />
                 )

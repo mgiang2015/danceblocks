@@ -1,5 +1,5 @@
 import { useDrop } from 'react-dnd'
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import ItemTypes from '../itemTypes';
 import Circle from './circle'
@@ -60,9 +60,9 @@ const Container = ({ hideSourceOnDrag }) => {
     const dispatch = useDispatch()
 
     // define callback invoked when a circle is moved
-    const updateCircle = useCallback((id, left, top) => {
+    const updateCircle = (id, left, top) => {
         dispatch(moveCircle({ id, left, top }))
-    })
+    }
 
     // hook to call when an object is dropped. Any component with this ref will be wired as a drop target
     const [, drop] = useDrop(() => ({
