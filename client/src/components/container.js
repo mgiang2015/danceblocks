@@ -51,7 +51,6 @@ const Container = ({ hideSourceOnDrag }) => {
     const style = {
         width: windowDimensions.width,
         height: windowDimensions.height,
-        border: '1px solid black'
     };
 
     // get circles from store
@@ -82,7 +81,7 @@ const Container = ({ hideSourceOnDrag }) => {
         <Marking top={0} left={windowDimensions.width * 0.25}>Q</Marking>
         <Marking top={0} left={windowDimensions.width * 0.75}>Q</Marking>
         <Marking top={windowDimensions.height * 0.5} left={windowDimensions.width * 0.5}></Marking>
-        <div ref={drop} style={style}>
+        <div ref={drop} style={style} className={styles.stage}>
             { /* Map each key-value in circles map to a Circle */}
             {Object.keys(circles).map((key) => {
                 const { top, left, backgroundColor, title } = circles[key];

@@ -16,8 +16,8 @@ const Circle = ({ id, left, top, backgroundColor, title, hideSourceOnDrag, }) =>
     const circleStyle = {
         position: 'absolute',
         backgroundColor: backgroundColor,
-        width: '3em',
-        height: '3em',
+        width: '2.5em',
+        height: '2.5em',
         borderRadius: '50%',
     };
 

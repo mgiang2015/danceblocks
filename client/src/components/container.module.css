@@ -4,6 +4,10 @@
     justify-content: flex-start;
 }
 
+.stage {
+    border: 1em solid #2C3E50;
+}
+
 .sidebar {
     display: flex;
     flex-direction: column;
