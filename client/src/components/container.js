@@ -16,18 +16,23 @@ function getWindowDimensions() {
     };
 }
 
-const Marking = ({ top, left }) => {
-    const style = {
+const Marking = ({ top, left, children }) => {
+    const wrapperStyle = {
         position: 'absolute',
         top: top,
         left: left,
-        backgroundColor: 'red',
+    }
+    const markingStyle = {
+        backgroundColor: '#EC7063',
         width: '0.5em',
-        height: '2em',
+        height: '1em',
     }
 
     return (
-        <div style={style} />
+        <div style={wrapperStyle}>
+            <div style={markingStyle} />
+            {children}
+        </div>
     )
 }
 
@@ -46,7 +51,6 @@ const Container = ({ hideSourceOnDrag }) => {
     const style = {
         width: windowDimensions.width,
         height: windowDimensions.height,
-        border: '1px solid black'
     };
 
     // get circles from store
@@ -73,12 +77,11 @@ const Container = ({ hideSourceOnDrag }) => {
 
     return (
     <div className={styles.wrapper}>
-        <Marking top={0} left={windowDimensions.width * 0.5} />
-        <Marking top={0} left={windowDimensions.width * 0.25} />
-        <Marking top={0} left={windowDimensions.width * 0.75} />
-        <Marking top={windowDimensions.height * 0.5} left={windowDimensions.width * 0.5} />
-        <Marking top={windowDimensions.height} left={windowDimensions.width * 0.5} />
-        <div ref={drop} style={style}>
+        <Marking top={0} left={windowDimensions.width * 0.5}>C</Marking>
+        <Marking top={0} left={windowDimensions.width * 0.25}>Q</Marking>
+        <Marking top={0} left={windowDimensions.width * 0.75}>Q</Marking>
+        <Marking top={windowDimensions.height * 0.5} left={windowDimensions.width * 0.5}></Marking>
+        <div ref={drop} style={style} className={styles.stage}>
             { /* Map each key-value in circles map to a Circle */}
             {Object.keys(circles).map((key) => {
                 const { top, left, backgroundColor, title } = circles[key];
