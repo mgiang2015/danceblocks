@@ -8,8 +8,8 @@ Frontend currently being developed. Backend for users and saving progress will b
 
 ## Features version 1.0.0
 
-- [ ] Drag-and-drop circles represent dancers. Each circle's color and label can be changed.
+- [x] Drag-and-drop circles represent dancers. Each circle's color and label can be changed.
 
-- [ ] Add and delete circles
+- [x] Add and delete circles
 
-- [ ] Center and quarter markings for choreographers to position dancers relative to these markings
+- [x] Center and quarter markings for choreographers to position dancers relative to these markings
