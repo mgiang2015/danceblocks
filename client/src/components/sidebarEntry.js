@@ -50,7 +50,7 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
                     <Typography className={styles.entryText}>Color</Typography>
                     <HexColorPicker color={currColor} onChange={setCurrColor}/>
                 </div>
-                <Button onClick={submitChanges}>Done</Button>
+                <Button size={entrySize} onClick={submitChanges}>Done</Button>
             </div>
         )
     }
@@ -61,8 +61,8 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
                 <Typography className={styles.entryText}>{title}</Typography>
                 <div style={colorDisplayStyle}></div>
             </div>
-            <Button onClick={toggleEditable}>Edit</Button>
-            <Button color="error" onClick={handleDelete}>Delete</Button>
+            <Button size={entrySize} onClick={toggleEditable}>Edit</Button>
+            <Button size={entrySize} color="error" onClick={handleDelete}>Delete</Button>
         </div>
     )
 }

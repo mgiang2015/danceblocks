@@ -34,7 +34,7 @@ const CircleAdder = () => {
     }
 
     if (!adding) {
-        return <Button onClick={toggleAdd}>Add a circle</Button>
+        return <Button size={entrySize} onClick={toggleAdd}>Add a circle</Button>
     }
 
     return (
@@ -44,7 +44,8 @@ const CircleAdder = () => {
                 <Typography className={styles.entryText}>Color</Typography>
                 <HexColorPicker color={currColor} onChange={setCurrColor}/>
             </div>
-            <Button onClick={handleSubmit}>Submit</Button>
+            <Button size={entrySize} onClick={handleSubmit}>Submit</Button>
+            <Button size={entrySize} onClick={toggleAdd} color={"error"}>Cancel</Button>
         </div>
     )
 }
