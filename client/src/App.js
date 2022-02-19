@@ -1,15 +1,17 @@
+import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import Container from './components/container';
-
+import Home from './pages/Home'
+import Login from './pages/Login'
+import SignUp from './pages/SignUp'
 
 function App() {
   return (
       <div className="App">
-				<DndProvider backend={HTML5Backend}>
-          <Container hideSourceOnDrag={true}/>
-				</DndProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
+        </Routes>
 			</div>
   );
 }
