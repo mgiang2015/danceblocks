@@ -1,13 +1,31 @@
-var express = require("express");
-var passport = require('passport');
-var LocalStrategy = require('passport-local');
-var crypto = require('crypto');
-var db = require('../db');
+/**
+ * Code adapted from https://www.freecodecamp.org/news/learn-how-to-handle-authentication-with-node-using-passport-js-4a56ed18e81e/
+ */
+const jwt = require('express-jwt');
 
-var router = express.Router();
+const getTokenFromHeaders = (req) => {
+  const { headers: { authorization } } = req;
 
-router.get("/auth", function(req, res, next) {
-    res.send("Auth API is working properly");
-});
+  if(authorization && authorization.split(' ')[0] === 'Token') {
+    return authorization.split(' ')[1];
+  }
+  return null;
+};
 
-module.exports = router;
+const auth = {
+  required: jwt({
+    secret: 'secret',
+    userProperty: 'payload',
+    algorithms: ['HS256'],
+    getToken: getTokenFromHeaders,
+  }),
+  optional: jwt({
+    secret: 'secret',
+    userProperty: 'payload',
+    algorithms: ['HS256'],
+    getToken: getTokenFromHeaders,
+    credentialsRequired: false,
+  }),
+};
+
+module.exports = auth;
