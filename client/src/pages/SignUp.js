@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios'
 
 // TODO: Change "Your Website" to whatever we want
 function Copyright(props) {
@@ -39,6 +40,21 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    // create postRequestBody
+    const postReqBody = {
+      user: {
+        firstName: data.get('firstName'),
+        lastName: data.get('lastName'),
+        email: data.get('email'),
+        password: data.get('password'),
+      }
+    }
+    // send post request
+    const serverUrl = "http://localhost:8000";
+    axios.post(`${serverUrl}/api/users`, postReqBody).
+          catch(error => {
+            console.error("There was an error!")
+          })
   };
 
     // TODO: Change all href here from # to the route we want to direct them to
