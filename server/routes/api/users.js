@@ -59,7 +59,8 @@ router.post('/login', auth.optional, (req, res, next) => {
     });
   }
 
-  // passport authentication here
+  // Passport authentication here. This is supposed to be the middleware.
+  // Due to extra error handling above, we are calling it here with paramters req, res, next
   return passport.authenticate('local', { session: false }, (err, passportUser, info) => {
     if(err) {
       return next(err);
