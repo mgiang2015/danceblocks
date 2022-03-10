@@ -1,5 +1,6 @@
 /**
  * Code adapted from https://www.freecodecamp.org/news/learn-how-to-handle-authentication-with-node-using-passport-js-4a56ed18e81e/
+ * This initialises all tools required for app
  */
 const express = require('express');
 const path = require('path');
@@ -18,7 +19,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 //Initiate our app
 const app = express();
 
-//Configure our app
+//Configure our app. Important last line of app.use: re-configure session?
 app.use(cors());
 app.use(require('morgan')('dev')); // HTPP logger middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,7 +31,8 @@ if(!isProduction) {
   app.use(errorHandler());
 }
 
-//Configure Mongoose
+// Configure Mongoose.
+// TODO: replace url with our own mongodb
 mongoose.connect('mongodb://localhost/passport-tutorial');
 mongoose.set('debug', true);
 
@@ -64,24 +66,5 @@ app.use((err, req, res) => {
   });
 });
 
-app.listen(8000, () => console.log('Server running on http://localhost:8000/'));
-
-/* Old version
-const express = require('express')
-
-const authRouter = require("./routes/auth")
-
-const PORT = process.env.PORT || 5000
-
-const app = express()
-
-app.get('/', (req, res, next) => {
-    res.send('Hello World!')
-})
-
-app.use("/", authRouter)
-
-app.listen(PORT, () => {
-    console.log(`Server listening on PORT ${PORT}`)
-})
-*/
+var PORT = process.env.PORT || 8000
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

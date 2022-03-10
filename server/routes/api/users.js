@@ -1,5 +1,6 @@
 /**
  * Code adapted from https://www.freecodecamp.org/news/learn-how-to-handle-authentication-with-node-using-passport-js-4a56ed18e81e/
+ * Middlewares for handling requests to /api/users
  */
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -7,7 +8,8 @@ const router = require('express').Router();
 const auth = require('../auth');
 const Users = mongoose.model('Users');
 
-//POST new user route (optional, everyone has access)
+// POST new user route (optional, everyone has access)
+// Use this route to create a new user with email and password
 router.post('/', auth.optional, (req, res, next) => {
   const { body: { user } } = req;
 
@@ -27,6 +29,7 @@ router.post('/', auth.optional, (req, res, next) => {
     });
   }
 
+  // Create new db entry here
   const finalUser = new Users(user);
 
   finalUser.setPassword(user.password);
@@ -35,7 +38,8 @@ router.post('/', auth.optional, (req, res, next) => {
     .then(() => res.json({ user: finalUser.toAuthJSON() }));
 });
 
-//POST login route (optional, everyone has access)
+// POST login route (optional, everyone has access)
+// Use this route to login and provide client with a token. Token can later be stored in cache
 router.post('/login', auth.optional, (req, res, next) => {
   const { body: { user } } = req;
 
@@ -55,12 +59,13 @@ router.post('/login', auth.optional, (req, res, next) => {
     });
   }
 
+  // passport authentication here
   return passport.authenticate('local', { session: false }, (err, passportUser, info) => {
     if(err) {
       return next(err);
     }
 
-    if(passportUser) {
+    if (passportUser) {
       const user = passportUser;
       user.token = passportUser.generateJWT();
 
@@ -71,7 +76,8 @@ router.post('/login', auth.optional, (req, res, next) => {
   })(req, res, next);
 });
 
-//GET current route (required, only authenticated users have access)
+// GET current route (required, only authenticated users have access)
+// Use this route to get information about the current logged in user (should have Authentication token)
 router.get('/current', auth.required, (req, res, next) => {
   const { payload: { id } } = req;
 

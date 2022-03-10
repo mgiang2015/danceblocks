@@ -4,6 +4,7 @@
 const express = require('express');
 const router = express.Router();
 
+// When /api is called, route to folder api
 router.use('/api', require('./api'));
 
 module.exports = router;

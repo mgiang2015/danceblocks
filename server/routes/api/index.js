@@ -4,6 +4,8 @@
 const express = require('express');
 const router = express.Router();
 
+// If people call /api/users, route to users folder
+// For future apis (circles for example), route through here
 router.use('/users', require('./users'));
 
 module.exports = router;
