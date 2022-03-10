@@ -33,7 +33,8 @@ if(!isProduction) {
 
 // Configure Mongoose.
 // TODO: replace url with our own mongodb
-mongoose.connect('mongodb://localhost/passport-tutorial');
+require('dotenv').config()
+mongoose.connect(process.env.MONGO_URI);
 mongoose.set('debug', true);
 
 // Require our models and routes
