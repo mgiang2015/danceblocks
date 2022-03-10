@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
+import Cookies from 'js-cookie'
 
 // TODO: Change "Your Website" to whatever we want
 function Copyright(props) {
@@ -50,8 +51,12 @@ export default function SignIn() {
 
     // send a POST request to our server
     const serverUrl = "http://localhost:8000"
-    axios.post(`${serverUrl}/api/users/login`, postReqBody).
-          catch(error => {
+    axios.post(`${serverUrl}/api/users/login`, postReqBody)
+        .then(res => {
+          console.log(res.data)
+          Cookies.set('jwt', res.data.user.token)
+        })
+        .catch(error => {
             console.error("There was an error!")
           })
   };
