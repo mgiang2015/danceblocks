@@ -1,10 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit'
 import circlesReducer from '../slices/circlesSlice'
-import userReducer from '../slices/userSlice'
+import { loadState, saveState } from '../util/localStorage'
+import throttle from 'lodash.throttle'
 
-export default configureStore({
+const preloadedState = loadState()
+const store = configureStore({
     reducer: {
       circles: circlesReducer,
-      user: userReducer,
-    }
+    },
+    preloadedState: preloadedState
 })
+
+store.subscribe(throttle(() => {
+  saveState({
+    circles: store.getState().circles
+  });
+}, 1000));
+
+
+export default store;
