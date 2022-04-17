@@ -1,6 +1,6 @@
 # DANCEBLOCKS
 
-[Danceblocks](danceblocks-987c8.web.app/) is a web application to help dancers easily plan out blockings for their performance.
+[Danceblocks](https://danceblocks-987c8.web.app/) is a web application to help dancers easily plan out blockings for their performance.
 
 ## Tech stack
 
