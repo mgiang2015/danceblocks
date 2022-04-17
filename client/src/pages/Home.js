@@ -5,7 +5,7 @@ import Footer from '../components/footer'
 import Sidebar from '../components/sidebar'
 import styles from './home.module.css'
 
-function Home() {
+function Home({ userEmail }) {
     return (
     <>
         <div className={styles.circleDisplayManager}>
@@ -14,7 +14,7 @@ function Home() {
             </DndProvider>
             <Sidebar />
         </div>
-        <Footer />
+        <Footer userEmail={userEmail}/>
     </>
     );
 }
