@@ -10,6 +10,8 @@
 
 .footer {
     margin: 1em;
+    display: flex;
+    flex-direction: row;
 }
 
 .footer * {

@@ -1,14 +1,21 @@
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import Container from '../components/container';
+import Footer from '../components/footer'
+import Sidebar from '../components/sidebar'
+import styles from './home.module.css'
 
-function Home() {
+function Home({ userEmail }) {
     return (
-    <div>
-        <DndProvider backend={HTML5Backend}>
-            <Container hideSourceOnDrag={true}/>
-        </DndProvider>
-    </div>
+    <>
+        <div className={styles.circleDisplayManager}>
+            <DndProvider backend={HTML5Backend}>
+                <Container hideSourceOnDrag={true}/>
+            </DndProvider>
+            <Sidebar />
+        </div>
+        <Footer userEmail={userEmail}/>
+    </>
     );
 }
 

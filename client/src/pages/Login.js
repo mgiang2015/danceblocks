@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
+import Cookies from 'js-cookie'
 
 // TODO: Change "Your Website" to whatever we want
 function Copyright(props) {
@@ -20,7 +21,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Material UI
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -50,8 +51,12 @@ export default function SignIn() {
 
     // send a POST request to our server
     const serverUrl = "http://localhost:8000"
-    axios.post(`${serverUrl}/api/users/login`, postReqBody).
-          catch(error => {
+    axios.post(`${serverUrl}/api/users/login`, postReqBody)
+        .then(res => {
+          console.log(res.data)
+          Cookies.set('jwt', res.data.user.token)
+        })
+        .catch(error => {
             console.error("There was an error!")
           })
   };
@@ -96,10 +101,6 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -110,12 +111,9 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
