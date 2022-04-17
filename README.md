@@ -1,6 +1,6 @@
 # DANCEBLOCKS
 
-Danceblocks is a web application to help dancers easily plan out blockings for their performance.
+[Danceblocks](danceblocks-987c8.web.app/) is a web application to help dancers easily plan out blockings for their performance.
 
 ## Tech stack
 
@@ -10,6 +10,7 @@ Danceblocks is a web application to help dancers easily plan out blockings for t
 
 ## Features version 1.0.0
 
-- [x] Drag-and-drop circles represent dancers. 
+- [x] Drag-and-drop dancers. 
+- [x] Add, delete and change existing dancer's label and color.
+- [ ] Progress is saved and re-loaded after you have exited the app
 
-- [x] Add, delete and change existing circles' properties.
