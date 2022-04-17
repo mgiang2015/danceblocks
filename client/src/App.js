@@ -3,8 +3,6 @@ import './App.css';
 import Home from './pages/Home'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
-import { selectUser, setUser } from "./slices/userSlice";
-import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import axios from "axios";
 import Cookies from 'js-cookie'
@@ -12,7 +10,6 @@ import Cookies from 'js-cookie'
 function App() {
   const [hasUser, setHasUser] = useState(false)
   const [user, setUser] = useState({})
-  const dispatch = useDispatch()
 
   useEffect(() => {
     // Retrieve user information using cookie and display it on Home page
@@ -35,8 +32,6 @@ function App() {
 
       if (user.email && user.email !== "") {
         setHasUser(true)
-        // Set user for the store
-        dispatch(setUser({email: user.email}))
       }
     }
   }, [])
