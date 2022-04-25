@@ -1,0 +1,27 @@
+[debug] [2022-04-25T14:46:53.904Z] ----------------------------------------------------------------------
+[debug] [2022-04-25T14:46:53.906Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2022-04-25T14:46:53.907Z] CLI Version:   10.7.1
+[debug] [2022-04-25T14:46:53.907Z] Platform:      darwin
+[debug] [2022-04-25T14:46:53.907Z] Node Version:  v14.17.0
+[debug] [2022-04-25T14:46:53.909Z] Time:          Mon Apr 25 2022 22:46:53 GMT+0800 (Singapore Standard Time)
+[debug] [2022-04-25T14:46:53.909Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-04-25T14:46:53.985Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-04-25T14:46:53.985Z] > authorizing via signed-in user (mgiang2015@gmail.com)
+[debug] [2022-04-25T14:46:53.985Z] [iam] checking project danceblocks-987c8 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-04-25T14:46:53.988Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/danceblocks-987c8:testIamPermissions [none]
+[debug] [2022-04-25T14:46:53.988Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/danceblocks-987c8:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-04-25T14:46:55.673Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/danceblocks-987c8:testIamPermissions 200
+[debug] [2022-04-25T14:46:55.674Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/danceblocks-987c8:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-04-25T14:46:55.676Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/danceblocks-987c8 [none]
+[debug] [2022-04-25T14:46:56.195Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/danceblocks-987c8 200
+[debug] [2022-04-25T14:46:56.195Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/danceblocks-987c8 {"projectId":"danceblocks-987c8","projectNumber":"421054829543","displayName":"danceblocks","name":"projects/danceblocks-987c8","resources":{"hostingSite":"danceblocks-987c8"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'danceblocks-987c8'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2022-04-25T14:46:56.200Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/danceblocks-987c8 [none]
+[debug] [2022-04-25T14:46:56.551Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/danceblocks-987c8 200
+[debug] [2022-04-25T14:46:56.552Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/danceblocks-987c8 {"projectId":"danceblocks-987c8","projectNumber":"421054829543","displayName":"danceblocks","name":"projects/danceblocks-987c8","resources":{"hostingSite":"danceblocks-987c8"},"state":"ACTIVE"}
+[debug] [2022-04-25T14:46:56.554Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/421054829543/sites/danceblocks-987c8/versions [none]
+[debug] [2022-04-25T14:46:56.554Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/421054829543/sites/danceblocks-987c8/versions {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
