@@ -1,9 +1,10 @@
 import { useState } from "react"
-import { changeCircle, deleteCircle } from "../slices/circlesSlice"
 import { useDispatch } from 'react-redux'
-import { Button, Typography, TextField } from '@mui/material';
+import { Button, Typography, TextField, Box } from '@mui/material';
 import { HexColorPicker } from 'react-colorful';
 import styles from './container.module.css'
+import { updateCircleInStore } from '../util/circleUtil';
+import { deleteCircleFromStore } from '../util/circleUtil';
 
 const SidebarEntry = ({ id, title, backgroundColor }) => {
     const [editable, setEditable] = useState(false)
@@ -23,17 +24,13 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
         // dispatch all the changes
         const dispatchTitle = currTitle !== "" ? currTitle : title
         const dispatchBackgroundColor = currColor !== "" ? currColor : backgroundColor
-        dispatch(changeCircle({
-            id: id,
-            title: dispatchTitle,
-            backgroundColor: dispatchBackgroundColor,
-        }))
+        updateCircleInStore({ dispatchCallback: dispatch, id: id, title: dispatchTitle, backgroundColor: dispatchBackgroundColor })
         toggleEditable()
     }
 
     const handleDelete = () => {
         // dispatch a delete action
-        dispatch(deleteCircle({ id }))
+        deleteCircleFromStore({ dispatchCallback: dispatch, id: id })
     }
 
     const colorDisplayStyle = {
@@ -44,26 +41,26 @@ const SidebarEntry = ({ id, title, backgroundColor }) => {
 
     if (editable) {
         return (
-            <div>
-                <div className={styles.entryFields}>
+            <Box>
+                <Box className={styles.entryFields}>
                     <TextField size={entrySize} label="Updated Label" placeholder="Dancer Name" onChange={(event) => setCurrTitle(event.target.value)}/>
                     <Typography className={styles.entryText}>Color</Typography>
                     <HexColorPicker color={currColor} onChange={setCurrColor}/>
-                </div>
+                </Box>
                 <Button size={entrySize} onClick={submitChanges}>Done</Button>
-            </div>
+            </Box>
         )
     }
 
     return (
-        <div>
-            <div className={styles.sidebarEntryInfo}>
+        <Box>
+            <Box className={styles.sidebarEntryInfo}>
                 <Typography className={styles.entryText}>{title}</Typography>
-                <div style={colorDisplayStyle}></div>
-            </div>
+                <Box style={colorDisplayStyle}></Box>
+            </Box>
             <Button size={entrySize} onClick={toggleEditable}>Edit</Button>
             <Button size={entrySize} color="error" onClick={handleDelete}>Delete</Button>
-        </div>
+        </Box>
     )
 }
 
