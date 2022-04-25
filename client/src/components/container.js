@@ -5,10 +5,12 @@ import ItemTypes from '../itemTypes';
 import Circle from './circle'
 import { selectCircles, moveCircle } from '../slices/circlesSlice';
 import styles from './container.module.css'
+import { Box } from '@mui/material';
 
 function getWindowDimensions() {
     var { innerWidth: width, innerHeight: height } = window;
     width = width * 0.8
+    height = height * 0.9
     return {
       width,
       height
@@ -28,10 +30,10 @@ const Marking = ({ top, left, children }) => {
     }
 
     return (
-        <div style={wrapperStyle}>
-            <div style={markingStyle} />
+        <Box style={wrapperStyle}>
+            <Box style={markingStyle} />
             {children}
-        </div>
+        </Box>
     )
 }
 
@@ -75,20 +77,20 @@ const Container = ({ hideSourceOnDrag }) => {
     }), [updateCircle]);
 
     return (
-    <div className={styles.wrapper}>
+    <Box className={styles.wrapper}>
         <Marking top={0} left={windowDimensions.width * 0.5}>C</Marking>
         <Marking top={0} left={windowDimensions.width * 0.25}>Q</Marking>
         <Marking top={0} left={windowDimensions.width * 0.75}>Q</Marking>
         <Marking top={windowDimensions.height * 0.5} left={windowDimensions.width * 0.5}></Marking>
-        <div ref={drop} style={style} className={styles.stage}>
+        <Box ref={drop} style={style} className={styles.stage}>
             { /* Map each key-value in circles map to a Circle */}
             {Object.keys(circles).map((key) => {
                 const { top, left, backgroundColor, title } = circles[key];
                 return (
                     <Circle key={key} id={key} title={title} left={left} top={top} backgroundColor={backgroundColor} hideSourceOnDrag={hideSourceOnDrag} />
                 );})}
-        </div>
-    </div>
+        </Box>
+    </Box>
     );
 };
 

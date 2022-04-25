@@ -1,21 +1,18 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addCircle } from "../slices/circlesSlice"
 import { Button, TextField, Typography } from '@mui/material';
 import { HexColorPicker } from 'react-colorful';
 import styles from './container.module.css'
+import { addCircleToStore } from '../util/circleUtil';
 
 const CircleAdder = () => {
     const defaultTitle = "New Dancer"
     const defaultColor = "#7d3c98"
-    const defaultTop = 20
-    const defaultLeft = 20
-
     const [adding, setAdding] = useState(false)
     const [currTitle, setCurrTitle] = useState(defaultTitle)
     const [currColor, setCurrColor] = useState(defaultColor)
-    const dispatch = useDispatch()
     const entrySize = "small"
+    const dispatch = useDispatch()
 
     const toggleAdd = () => {
         setAdding(!adding)
@@ -24,12 +21,7 @@ const CircleAdder = () => {
     }
 
     const handleSubmit = () => {
-        dispatch(addCircle({
-            title: currTitle !== "" ? currTitle : defaultTitle,
-            backgroundColor: currColor !== "" ? currColor : defaultColor,
-            top: defaultTop,
-            left: defaultLeft,
-        }))
+        addCircleToStore({ dispatchCallback: dispatch, title: currTitle, color: currColor})
         toggleAdd()
     }
 
