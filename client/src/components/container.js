@@ -9,8 +9,8 @@ import { Box } from '@mui/material';
 
 function getWindowDimensions() {
     var { innerWidth: width, innerHeight: height } = window;
-    width = width * 0.8
     height = height * 0.9
+    width = height
     return {
       width,
       height
